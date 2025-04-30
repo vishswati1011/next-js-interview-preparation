@@ -94,11 +94,11 @@ Can you explain the full rendering lifecycle for a page in Next.js with getStati
  The pages directory defines the application's routes. Each file inside pages automatically becomes a route. For example, pages/about.js becomes accessible at /about. This is known as file-based 
  routing.
 
-# 5. What is file-based routing in Next.js?
+## 5. What is file-based routing in Next.js?
  Answer:
  File-based routing means that the file structure inside the pages folder determines the routes of the application. For instance, pages/blog/index.js would map to /blog.
 
-# 6. How do you create a dynamic route in Next.js?
+## 6. How do you create a dynamic route in Next.js?
  Answer:
  You create a dynamic route by using square brackets in the file name.
  Example: pages/post/[id].js handles routes like /post/1, /post/hello, etc.
@@ -129,85 +129,86 @@ Can you explain the full rendering lifecycle for a page in Next.js with getStati
  The Link component enables client-side navigation between pages, which is faster than traditional page reloads. It also prefetches the linked page for better performance.
 
 # 11. Real Life Eample of using getStaticPaths and getStaticProps with Markdown files as blog posts.
+
 🗂 Project Structure
-###
-  /pages
-    /posts
-      [slug].js       ← dynamic blog route
-  /posts
-    hello-world.md
-    nextjs-tips.md
-  /lib
-    posts.js          ← helper to read markdown
 
 ###
-2️⃣ /lib/posts.js – Markdown Parser
+   /pages
+     /posts
+       [slug].js       ← dynamic blog route
+   /posts
+     hello-world.md
+     nextjs-tips.md
+   /lib
+     posts.js          ← helper to read markdown
+###
+
+## 2️⃣ /lib/posts.js – Markdown Parser
 
 ###
-  import fs from 'fs';
-  import path from 'path';
-  import matter from 'gray-matter';
+    import fs from 'fs';
+    import path from 'path';
+    import matter from 'gray-matter';
+    
+    const postsDirectory = path.join(process.cwd(), 'posts');
+    
+    export function getAllPostSlugs() {
+      const filenames = fs.readdirSync(postsDirectory);
+      return filenames.map((filename) => ({
+        params: {
+          slug: filename.replace(/\.md$/, ''),
+        },
+      }));
+    }
   
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  
-  export function getAllPostSlugs() {
-    const filenames = fs.readdirSync(postsDirectory);
-    return filenames.map((filename) => ({
-      params: {
-        slug: filename.replace(/\.md$/, ''),
-      },
-    }));
-  }
-  
-  export function getPostData(slug) {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
-  
-    return {
-      slug,
-      ...data,
-      content,
-    };
-  }
+    export function getPostData(slug) {
+      const fullPath = path.join(postsDirectory, `${slug}.md`);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
+    
+      return {
+        slug,
+        ...data,
+        content,
+      };
+    }
 
 ### 
 
-3️⃣ /pages/posts/[slug].js
+## 3️⃣ /pages/posts/[slug].js
 ###
 
-  import { getAllPostSlugs, getPostData } from '../../lib/posts';
-  
-  export async function getStaticPaths() {
-    const paths = getAllPostSlugs();
-    return {
-      paths,
-      fallback: false,
-    };
-  }
-  
-  export async function getStaticProps({ params }) {
-    const post = getPostData(params.slug);
-    return {
-      props: {
-        post,
-      },
-    };
-  }
-  
-  export default function Post({ post }) {
-    return (
-      <article>
-        <h1>{post.title}</h1>
-        <p>{post.date}</p>
-        <div>{post.content}</div>
-      </article>
-    );
-  }
-
+    import { getAllPostSlugs, getPostData } from '../../lib/posts';
+    
+    export async function getStaticPaths() {
+      const paths = getAllPostSlugs();
+      return {
+        paths,
+        fallback: false,
+      };
+    }
+    
+    export async function getStaticProps({ params }) {
+      const post = getPostData(params.slug);
+      return {
+        props: {
+          post,
+        },
+      };
+    }
+    
+    export default function Post({ post }) {
+      return (
+        <article>
+          <h1>{post.title}</h1>
+          <p>{post.date}</p>
+          <div>{post.content}</div>
+        </article>
+      );
+    }
 ### 
 
-🧠 Summary of What Happens
+## 🧠 Summary of What Happens
 getAllPostSlugs() reads all .md files and returns slugs like:
 
 [{ params: { slug: 'hello-world' } }, { params: { slug: 'nextjs-tips' } }]
@@ -217,13 +218,13 @@ For each slug, getStaticProps() reads and parses the .md file and passes the dat
 
 
 
-### 📦 Output After Build (next build)
+## 📦 Output After Build (next build)
 Static HTML is created for each post.
 Super-fast page loads.
 SEO optimized.
 No server code needed at runtime.
 
-### 🔄 Visual Flow:
+## 🔄 Visual Flow:
 
 [next build]
     ↓
