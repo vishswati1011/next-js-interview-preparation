@@ -348,22 +348,21 @@ Configuring image domains
 
 
 ###
-
-  module.exports = {
-    reactStrictMode: true,
-    images: {
-      domains: ['example.com'],
-    },
-    async redirects() {
-      return [
-        {
-          source: '/old',
-          destination: '/new',
-          permanent: true,
-        },
-      ];
-    },
-  };
+    module.exports = {
+      reactStrictMode: true,
+      images: {
+        domains: ['example.com'],
+      },
+      async redirects() {
+        return [
+          {
+            source: '/old',
+            destination: '/new',
+            permanent: true,
+          },
+        ];
+      },
+    };
 
 ###
 
@@ -436,10 +435,10 @@ Client-side:
 Server-side:
 
 ###
-   export async function getServerSideProps() {
-     const res = await fetch('https://api.example.com');
-     const data = await res.json();
-     return { props: { data } };
-   }
+    export async function getServerSideProps() {
+      const res = await fetch('https://api.example.com');
+      const data = await res.json();
+      return { props: { data } };
+    }
 ###
  
