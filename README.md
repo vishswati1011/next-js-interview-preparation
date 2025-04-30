@@ -239,3 +239,208 @@ No server code needed at runtime.
    Gets props → Renders page as HTML + JSON
 
 ###
+
+# 🟡 Intermediate-Level Next.js Interview Q&A
+
+## 1. How does Image Optimization work in Next.js?
+Answer:
+Next.js provides a built-in next/image component that automatically optimizes images. It supports:
+
+1. Lazy loading
+
+2. Responsive resizing
+
+3. Modern formats (WebP, AVIF)
+
+4. On-demand resizing at request time (with caching)
+
+5. It helps improve performance and SEO by serving only what's needed for each device.
+
+
+## 2. What is the difference between API routes and traditional REST APIs?
+Answer:
+Next.js API routes allow you to create serverless functions inside your app (in the pages/api directory) without a separate backend.
+Unlike traditional REST APIs that run on a separate server, Next.js API routes:
+
+Are deployed as serverless functions (e.g., on Vercel)
+
+Run only on the server
+
+Automatically scale
+
+Example: pages/api/hello.js handles GET /api/hello.
+
+## 3. Explain how Next.js handles static file serving.
+Answer:
+Files placed in the /public directory are served statically.
+
+For example, public/logo.png is accessible via /logo.png.
+
+This is useful for images, fonts, and other static assets that don’t need processing.
+
+## 4. What is Incremental Static Regeneration (ISR)? How does it work?
+Answer:
+ISR allows static pages to be updated after deployment, without rebuilding the entire site.
+With revalidate in getStaticProps, Next.js:
+
+Serves the old static page immediately
+
+Re-generates the page in the background on the next request
+
+Updates the cache with the new version
+
+###
+   export async function getStaticProps() {
+     return {
+       props: { /* data */ },
+       revalidate: 10, // seconds
+     };
+   }
+
+###
+
+## 5. How do you handle custom 404 and 500 pages in Next.js?
+Answer:
+You can create these files:
+
+pages/404.js – Custom "Page Not Found"
+
+pages/500.js – Custom error for server-side crashes
+
+They are automatically used when errors occur.
+
+## 6. What is middleware in Next.js, and what are its common use cases?
+Answer:
+Middleware in Next.js runs before a request is completed and allows you to:
+
+Redirect users
+
+Check authentication
+
+Rewrite paths
+
+Run logic at the edge
+
+Middleware is defined in middleware.ts/js at the root. Example:
+
+###
+
+   export function middleware(request) {
+     const isLoggedIn = checkAuth(request);
+     if (!isLoggedIn) {
+       return NextResponse.redirect('/login');
+     }
+   }
+
+###
+
+## 7. Can you explain how next.config.js works and some common configurations?
+Answer:
+next.config.js is the main configuration file for Next.js. Common settings:
+
+Enabling React strict mode
+
+Adding environment variables
+
+Rewriting/redirecting routes
+
+Configuring image domains
+
+
+###
+
+  module.exports = {
+    reactStrictMode: true,
+    images: {
+      domains: ['example.com'],
+    },
+    async redirects() {
+      return [
+        {
+          source: '/old',
+          destination: '/new',
+          permanent: true,
+        },
+      ];
+    },
+  };
+
+###
+
+## 8. How do you implement authentication in a Next.js app?
+Answer:
+Common approaches:
+
+NextAuth.js: Full-featured authentication with OAuth, credentials, etc.
+
+Custom JWT/Auth tokens stored in cookies/localStorage
+
+Middleware for protecting routes
+
+Server-side protection using getServerSideProps
+
+Example with NextAuth:
+
+###
+   npm i next-auth
+###
+
+
+###
+    import NextAuth from 'next-auth';
+    import Providers from 'next-auth/providers';
+    
+    export default NextAuth({
+      providers: [
+        Providers.GitHub({
+          clientId: process.env.GITHUB_ID,
+          clientSecret: process.env.GITHUB_SECRET,
+        }),
+      ],
+});
+
+###
+
+
+## 9. What is the role of _app.js and _document.js files?
+Answer:
+
+_app.js: Wraps all pages. Great for global state, layout, and styles.
+
+_document.js: Controls the HTML document structure. Used for modifying <html> and <body> tags, adding fonts, etc.
+
+Example _app.js:
+
+###
+   export default function MyApp({ Component, pageProps }) {
+     return <Component {...pageProps} />;
+   }
+###  
+
+
+## 10. How would you fetch data client-side vs server-side in Next.js?
+Answer:
+
+Client-side: Use useEffect + fetch() inside a component
+
+Server-side: Use getStaticProps, getServerSideProps, or API routes
+
+Client-side:
+
+###
+
+  useEffect(() => {
+    fetch('/api/data').then(res => res.json()).then(setData);
+  }, []);
+
+###
+
+Server-side:
+###
+export async function getServerSideProps() {
+  const res = await fetch('https://api.example.com');
+  const data = await res.json();
+  return { props: { data } };
+}
+###
+ 
