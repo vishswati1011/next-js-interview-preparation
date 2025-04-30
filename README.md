@@ -8,37 +8,62 @@ What are the main features of Next.js?
 What is the difference between SSR and CSR in the context of Next.js?
 
 Explain the purpose of the pages directory in Next.js.
+
 What is file-based routing in Next.js?
+
 How do you create a dynamic route in Next.js?
+
 What is the difference between getStaticProps and getServerSideProps?
+
 What is getStaticPaths and when is it used?
+
 How can you navigate between pages in Next.js?
+
 What is the use of the Link component in Next.js?
 
 # 🟡 Intermediate Level Questions
+
 How does Image Optimization work in Next.js?
+
 What is the difference between API routes and traditional REST APIs?
+
 Explain how Next.js handles static file serving.
+
 What is Incremental Static Regeneration (ISR)? How does it work?
+
 How do you handle custom 404 and 500 pages in Next.js?
+
 What is middleware in Next.js, and what are its common use cases?
+
 Can you explain how next.config.js works and some common configurations?
+
 How do you implement authentication in a Next.js app?
+
 What is the role of _app.js and _document.js files?
+
 How would you fetch data client-side vs server-side in Next.js?
 
 # 🔴 Advanced Level Questions
-Explain how React Server Components are used in Next.js (especially in App Router).
-What are the benefits of the App Router over the Pages Router in Next.js 13+?
-How would you implement internationalization (i18n) in Next.js?
-How does streaming and partial rendering work in Next.js 13+?
-Describe the performance optimization techniques in Next.js.
-How does Next.js handle code-splitting and lazy loading?
-How do you deploy a Next.js application (e.g., to Vercel, AWS, Docker)?
-How can you integrate GraphQL or REST APIs with Next.js?
-Explain Middleware vs API Routes in Next.js. When would you use each?
-Can you explain the full rendering lifecycle for a page in Next.js with getStaticProps, getStaticPaths, and ISR?
 
+Explain how React Server Components are used in Next.js (especially in App Router).
+
+What are the benefits of the App Router over the Pages Router in Next.js 13+?
+
+How would you implement internationalization (i18n) in Next.js?
+
+How does streaming and partial rendering work in Next.js 13+?
+
+Describe the performance optimization techniques in Next.js.
+
+How does Next.js handle code-splitting and lazy loading?
+
+How do you deploy a Next.js application (e.g., to Vercel, AWS, Docker)?
+
+How can you integrate GraphQL or REST APIs with Next.js?
+
+Explain Middleware vs API Routes in Next.js. When would you use each?
+
+Can you explain the full rendering lifecycle for a page in Next.js with getStaticProps, getStaticPaths, and ISR?
 
 
 # 1. What is Next.js and why would you use it over React?
