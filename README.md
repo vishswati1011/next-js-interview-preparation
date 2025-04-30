@@ -382,7 +382,7 @@ Server-side protection using getServerSideProps
 Example with NextAuth:
 
 ###
-   npm i next-auth
+    npm i next-auth
 ###
 
 
@@ -397,8 +397,7 @@ Example with NextAuth:
           clientSecret: process.env.GITHUB_SECRET,
         }),
       ],
-});
-
+    });
 ###
 
 
@@ -412,9 +411,9 @@ _document.js: Controls the HTML document structure. Used for modifying <html> an
 Example _app.js:
 
 ###
-   export default function MyApp({ Component, pageProps }) {
-     return <Component {...pageProps} />;
-   }
+     export default function MyApp({ Component, pageProps }) {
+       return <Component {...pageProps} />;
+     }
 ###  
 
 
@@ -428,19 +427,19 @@ Server-side: Use getStaticProps, getServerSideProps, or API routes
 Client-side:
 
 ###
-
-  useEffect(() => {
-    fetch('/api/data').then(res => res.json()).then(setData);
-  }, []);
+    useEffect(() => {
+      fetch('/api/data').then(res => res.json()).then(setData);
+    }, []);
 
 ###
 
 Server-side:
+
 ###
-export async function getServerSideProps() {
-  const res = await fetch('https://api.example.com');
-  const data = await res.json();
-  return { props: { data } };
-}
+   export async function getServerSideProps() {
+     const res = await fetch('https://api.example.com');
+     const data = await res.json();
+     return { props: { data } };
+   }
 ###
  
