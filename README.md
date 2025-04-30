@@ -2,8 +2,11 @@
 
 # 🟢 Basic Level Questions
 What is Next.js and why would you use it over React?
+
 What are the main features of Next.js?
+
 What is the difference between SSR and CSR in the context of Next.js?
+
 Explain the purpose of the pages directory in Next.js.
 What is file-based routing in Next.js?
 How do you create a dynamic route in Next.js?
