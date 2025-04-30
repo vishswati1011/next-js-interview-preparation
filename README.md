@@ -1,6 +1,6 @@
 # next-js-interview-preparation
 
-# 🟢 Basic Level Questions
+## 🟢 Basic Level Questions
 What is Next.js and why would you use it over React?
 
 What are the main features of Next.js?
@@ -21,7 +21,7 @@ How can you navigate between pages in Next.js?
 
 What is the use of the Link component in Next.js?
 
-# 🟡 Intermediate Level Questions
+## 🟡 Intermediate Level Questions
 
 How does Image Optimization work in Next.js?
 
@@ -43,7 +43,7 @@ What is the role of _app.js and _document.js files?
 
 How would you fetch data client-side vs server-side in Next.js?
 
-# 🔴 Advanced Level Questions
+## 🔴 Advanced Level Questions
 
 Explain how React Server Components are used in Next.js (especially in App Router).
 
@@ -66,12 +66,12 @@ Explain Middleware vs API Routes in Next.js. When would you use each?
 Can you explain the full rendering lifecycle for a page in Next.js with getStaticProps, getStaticPaths, and ISR?
 
 
-# 1. What is Next.js and why would you use it over React?
+## 1. What is Next.js and why would you use it over React?
  Answer:
  Next.js is a React-based framework that enables features like server-side rendering (SSR), static site generation (SSG), file-based routing, and API routes out of the box.
  While React focuses on the view layer of the application, Next.js provides a complete framework for building production-ready applications with better SEO, performance, and scalability.
 
-# 2. What are the main features of Next.js?
+## 2. What are the main features of Next.js?
  Answer:
  Some core features include:
  Server-Side Rendering (SSR)
@@ -84,12 +84,12 @@ Can you explain the full rendering lifecycle for a page in Next.js with getStati
  Middleware and edge functions
  TypeScript support
 
-# 3. What is the difference between SSR and CSR in Next.js?
+## 3. What is the difference between SSR and CSR in Next.js?
  Answer:
  SSR (Server-Side Rendering): The page is rendered on the server for each request (getServerSideProps). Good for dynamic content and SEO.
  CSR (Client-Side Rendering): The page is rendered in the browser after JavaScript loads. It's faster after the initial load but not SEO-friendly by default.
 
-# 4. Explain the purpose of the pages directory in Next.js.
+## 4. Explain the purpose of the pages directory in Next.js.
  Answer:
  The pages directory defines the application's routes. Each file inside pages automatically becomes a route. For example, pages/about.js becomes accessible at /about. This is known as file-based 
  routing.
@@ -104,19 +104,19 @@ Can you explain the full rendering lifecycle for a page in Next.js with getStati
  Example: pages/post/[id].js handles routes like /post/1, /post/hello, etc.
  You can then access the id using useRouter or getStaticProps/getServerSideProps.
 
-# 7. What is the difference between getStaticProps and getServerSideProps?
+## 7. What is the difference between getStaticProps and getServerSideProps?
  Answer:
  getStaticProps: Runs at build time and generates a static HTML page. Great for pages that don’t change often.
  getServerSideProps: Runs on every request, and generates the page on the server each time. Ideal for dynamic data.
 
 
 
-# 8. What is getStaticPaths and when is it used?
+## 8. What is getStaticPaths and when is it used?
  Answer:
  getStaticPaths is used with getStaticProps for dynamic static pages. It defines which paths should be pre-rendered at build time.
  Example: if you have a blog, getStaticPaths defines which blog post pages to generate.
 
-# 9. How can you navigate between pages in Next.js?
+## 9. How can you navigate between pages in Next.js?
  Answer:
  You can navigate using the Link component from next/link or using useRouter().push() for programmatic navigation.
 ###
@@ -124,11 +124,11 @@ Can you explain the full rendering lifecycle for a page in Next.js with getStati
   <Link href="/about">About</Link>
 ###  
 
-# 10. What is the use of the Link component in Next.js?
+## 10. What is the use of the Link component in Next.js?
  Answer:
  The Link component enables client-side navigation between pages, which is faster than traditional page reloads. It also prefetches the linked page for better performance.
 
-# 11. Real Life Eample of using getStaticPaths and getStaticProps with Markdown files as blog posts.
+## 11. Real Life Eample of using getStaticPaths and getStaticProps with Markdown files as blog posts.
 
 🗂 Project Structure
 
@@ -226,14 +226,16 @@ No server code needed at runtime.
 
 ## 🔄 Visual Flow:
 
-[next build]
-    ↓
-Detects [id].js → Sees getStaticPaths()
-    ↓
-Calls getStaticPaths() → Gets paths like /posts/1, /posts/2
-    ↓
-For each path → Calls getStaticProps({ params: { id } })
-    ↓
-Gets props → Renders page as HTML + JSON
+###
 
+   [next build]
+       ↓
+   Detects [id].js → Sees getStaticPaths()
+       ↓
+   Calls getStaticPaths() → Gets paths like /posts/1, /posts/2
+       ↓
+   For each path → Calls getStaticProps({ params: { id } })
+       ↓
+   Gets props → Renders page as HTML + JSON
 
+###
